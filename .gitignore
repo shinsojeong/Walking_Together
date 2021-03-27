@@ -1,0 +1,32 @@
+# dependencies
+/client/node_modules
+/client/.pnp
+.pnp.js
+
+# testing
+/client/coverage
+
+# production
+/client/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+### application.properties ###
+/server/src/main/resources/application.properties
+
+###  <<< AWS >>>  ###
+/server/src/main/resources/application-aws.yml
+
+### build.gradle ###
+/server/build.gradle
+
+
