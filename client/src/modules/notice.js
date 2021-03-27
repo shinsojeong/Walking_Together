@@ -17,8 +17,8 @@ const INIT_NOTICE_STATE = {
         title: '',
         content: '',
         createTime: '',
-        imageFiles: [],
-        attachedFiles: []
+        imageFiles: null,
+        attachedFiles: null
     }
 };
 
@@ -35,61 +35,61 @@ const INITSELECTEDNOTICE = 'INITSELECTEDNOTICE';
 //action
 export const insertNotice = (       //공지글 등록 (==>form에서 직접 submit해야 파일 전송돼서 사용 안 했음 ㅠ)
     formData
-    ) => async(dispatch) => {
-        await axios.post('/admin/createpost' ,formData)
+) => async(dispatch) => {
+    await axios.post('/admin/createpost' ,formData)
         .then((response) => {
             console.log(response)
         }).catch((err) => alert(err));
 
-        dispatch({
-            type: INSERTNOTICE
-        })
-    }
+    dispatch({
+        type: INSERTNOTICE
+    })
+}
 
 export const updateNotice = (       //공지글 수정
-    noticeId, 
-    title, 
-    content, 
-    imageFiles, 
+    noticeId,
+    title,
+    content,
+    imageFiles,
     attachedFiles
-    ) => async(dispatch) => { 
-        await axios.post(`/admin/update`, {
-            noticeId: noticeId,
-            title: title,
-            content: content,
-            imageFiles: imageFiles,
-            attachedFiles: attachedFiles
-        }).then((response) => {
-            console.log(response)
-        }).catch((err) => alert(err));
+) => async(dispatch) => {
+    await axios.post(`/admin/update`, {
+        noticeId: noticeId,
+        title: title,
+        content: content,
+        imageFiles: imageFiles,
+        attachedFiles: attachedFiles
+    }).then((response) => {
+        console.log(response)
+    }).catch((err) => alert(err));
 
-        dispatch({
-            type: UPDATENOTICE,
-            title,
-            content,
-            imageFiles,
-            attachedFiles
-        })
-    }
+    dispatch({
+        type: UPDATENOTICE,
+        title,
+        content,
+        imageFiles,
+        attachedFiles
+    })
+}
 
 export const deleteNotice = (           //공지글 삭제
     noticeId
-    ) => async(dispatch) => {   
-        await axios.get(`/admin/delete?noticeId=${noticeId}`)
+) => async(dispatch) => {
+    await axios.get(`/admin/delete?noticeId=${noticeId}`)
 
-        dispatch({
-            type: DELETENOTICE
-        })
+    dispatch({
+        type: DELETENOTICE
+    })
 }
 
 export const selectNotice = (          //공지글 세부내용 조회
     noticeId
-    ) => async(dispatch) => { 
-        await axios.get(`/notice`, {
-            params: {
-                noticeId: noticeId
-            }
-        })
+) => async(dispatch) => {
+    await axios.get(`/notice`, {
+        params: {
+            noticeId: noticeId
+        }
+    })
         .then((res) => {
             dispatch({
                 type: SELECTNOTICE,
@@ -101,27 +101,27 @@ export const selectNotice = (          //공지글 세부내용 조회
 export const getNoticeList = (          //공지사항 목록 가져오기
     page,
     keyword
-    ) => async(dispatch) => {
-        if(keyword!=null) {
-            await axios.post(`/noticeList`,{
-                page: page,
-                keyword: keyword
-            }).then((res) => {
-                dispatch({
-                    type: GETLIST,
-                    payload: res.data.data
-                })
+) => async(dispatch) => {
+    if(keyword!=null) {
+        await axios.post(`/noticeList`,{
+            page: page,
+            keyword: keyword
+        }).then((res) => {
+            dispatch({
+                type: GETLIST,
+                payload: res.data
             })
-        }else {
-            await axios.post(`/noticeList`, {
-                page: page
-            }).then((res) => {
-               dispatch({
-                    type: GETLIST,
-                    payload: res.data
-                })
+        })
+    }else {
+        await axios.post(`/noticeList`, {
+            page: page
+        }).then((res) => {
+            dispatch({
+                type: GETLIST,
+                payload: res.data
             })
-        }
+        })
+    }
 }
 
 export const initSelectedNotice = () => async(dispatch) => {        //redux selectedNotice 초기화
@@ -142,7 +142,7 @@ const noticeReducer = (state = INIT_NOTICE_STATE, action) => {
 
         case UPDATENOTICE:
             return {
-                ...state, 
+                ...state,
                 selectedNotice: {
                     title: action.title,
                     content: action.content,
@@ -158,14 +158,14 @@ const noticeReducer = (state = INIT_NOTICE_STATE, action) => {
                     title: '',
                     content: '',
                     createTime: '',
-                    imageFiles: [],
-                    attachedFiles: {}
+                    imageFiles: null,
+                    attachedFiles: null
                 }
             }
 
         case SELECTNOTICE:
             return {
-                ...state, 
+                ...state,
                 selectedNotice: action.payload
             }
 
@@ -175,7 +175,7 @@ const noticeReducer = (state = INIT_NOTICE_STATE, action) => {
                 list: action.payload.data,
                 pageInfo: action.payload.pageInfo
             }
-        
+
         case INITSELECTEDNOTICE:
             return {
                 ...state,
@@ -184,11 +184,11 @@ const noticeReducer = (state = INIT_NOTICE_STATE, action) => {
                     title: '',
                     content: '',
                     createTime: '',
-                    imageFiles: [],
-                    attachedFiles: {}
+                    imageFiles: null,
+                    attachedFiles: null
                 }
             }
-            
+
         default:
             return state
     }

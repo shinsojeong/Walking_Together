@@ -26,9 +26,9 @@ const url = process.env.REACT_APP_URL;
 
 export const getPartner = async(stdId) => {
     const res = await axios.get(`${url}/activity/create/stdId=${stdId}`)
-    .then((response) => {
-        console.log(response)
-    }).catch((err) => alert(err));
+        .then((response) => {
+            console.log(response)
+        }).catch((err) => alert(err));
 
     return {
         type: GETPARTNER,
@@ -47,7 +47,7 @@ export const createActivity = async(stdId, partnerId) => {
     return {
         type: CREATEACTIVITY,
         payload: {
-            partnerId: partnerId, 
+            partnerId: partnerId,
             activityId: res.data
         }
     }
@@ -80,11 +80,10 @@ export const getLocation = async(latitude, longitude, time) => {
     }
 }
 
-export const finishActivity = async(activityId, map, startTime, finishTime, distance, finishPhoto) => {
+export const finishActivity = async(activityId, map, finishTime, distance, finishPhoto) => {
     const res = await axios.post(`${url}/activity/finish`, {
         activityId: activityId,
         map: map,
-        startTime: startTime,
         finishTime: finishTime,
         distance: distance,
         finishPhoto: finishPhoto,
@@ -101,11 +100,11 @@ export const finishActivity = async(activityId, map, startTime, finishTime, dist
 //reducer
 const activityReducer = (state = INIT_ACTIVITY_STATE, action) => {
     switch(action.type) {
-        
+
         case GETPARTNER:
-            return { 
-                ...state, 
-                partner: action.payload 
+            return {
+                ...state,
+                partner: action.payload
             }
 
         case CREATEACTIVITY:
@@ -125,7 +124,7 @@ const activityReducer = (state = INIT_ACTIVITY_STATE, action) => {
                     activity: 1
                 }
             }
-        
+
         case GETLOCATION:
             return {
                 ...state,
