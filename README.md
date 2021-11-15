@@ -1,4 +1,4 @@
-<p align="center"><img src="https://user-images.githubusercontent.com/61176569/121824655-b5d44b00-cce8-11eb-9f43-c33f953f5f22.png"/></p>
+![walking-together](https://user-images.githubusercontent.com/61176569/141734753-3d68e759-f683-40df-a51a-49a09c582427.png)
 
 # 1. Walking Together
 ## 1.1. 프로젝트 기간
