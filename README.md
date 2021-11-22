@@ -1,8 +1,8 @@
-![walking-together](https://user-images.githubusercontent.com/61176569/141734753-3d68e759-f683-40df-a51a-49a09c582427.png)
+![walking-together](https://user-images.githubusercontent.com/61176569/142864682-9fe5ab46-6b64-4faa-8cc1-e14e74515def.png)
 
 # 1. Walking Together
 ## 1.1. 프로젝트 기간
-<p align="center"><b>2021.01.15 ~ 2021.06.15</b></p>
+<p align="center"><b>2021.01.15 ~ 2021.06.24</b></p>
 
 ## 1.2. 프로젝트 설명
 - Walking Together은 COVID-19로 인해 둔화된 봉사 활동에 어떻게 활기를 불어 넣어 줄 수 있을지에 대한 고민에서 시작되었습니다.
